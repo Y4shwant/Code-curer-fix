@@ -1,0 +1,195 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #120000;
+}
+
+/* Header and Navigation */
+header {
+    position: fixed;  /* Makes the header fixed */
+    top: 0;           /* Sticks the header to the top of the viewport */
+    width: 100%;      /* Ensures the header spans the entire width of the screen */
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    color: white;
+    padding: 20px 0;
+    z-index: 1000;    /* Ensures the header stays above other content */
+    text-align: center;
+}
+.button {
+    background-color: #00a1e4;  /* Button background color */
+    color: white;               /* Button text color */
+    padding: 10px 30px;         /* Space around text */
+    font-size: 18px;            /* Text size */
+    text-align: center;         /* Center text */
+    text-decoration: none;      /* Remove underline */
+    display: inline-block;      /* Make it inline */
+    border: 2px solid white;    /* Border color and width */
+    border-radius: 5px;         /* Rounded corners */
+    cursor: pointer;            /* Pointer cursor */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect */
+.button:hover {
+    background-color: #007b9f;  /* Change background color when hovered */
+    color: #f0f0f0;             /* Change text color when hovered */
+}
+
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+nav .logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background-image: url('C:\Users\vtsta\Pictures\Screenshots');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero .content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: 64px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.hero .button {
+    text-decoration: none;
+    background-color: #fff;
+    color: #003300;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-size: 20px;
+    transition: background-color 0.3s;
+}
+
+.hero .button:hover {
+    background-color: #e0e0e0;
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0c33cc;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* Floating Star Styling */
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border-radius: 50%;
+    animation: float 5s linear infinite;
+}
+
+/* Twinkling Star Styling */
+.twinkle-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background-color: white;
+    border-radius: 50%;
+    animation: twinkle 2s linear infinite;
+    opacity: 0;
+}
+
+/* Animation for floating stars */
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100vh) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Animation for twinkling stars */
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}

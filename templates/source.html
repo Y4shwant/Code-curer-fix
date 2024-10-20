@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeCure - Vulnerability Checker</title>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    background-color: #120000;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+    color: white;
+    padding: 30px 0;
+    z-index: 1000;
+    text-align: center;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+.brand {
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 7px;
+    margin: 0 auto;
+    width: 90%; /* Set width to 90% of the viewport */
+    max-width: 1200px; /* Set a maximum width */
+    padding-bottom: 100px; /* Add padding to prevent overlap with footer */
+}
+.container h1 {
+    font-size: 50px;
+    color: white;
+    margin-bottom: 10px;
+}
+.container p {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 20px;
+}
+textarea {
+    width: 800px; /* Set a fixed width for the textarea */
+    height: 250px;
+    padding: 20px;
+    margin: 0 auto; /* Center the textarea */
+    border: 10px solid #ddd;
+    border-radius: 5px;
+    font-family: monospace;
+    resize: none;
+    display: block; /* Ensure it's treated as a block element */
+}
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 0 auto; /* Center the button */
+    margin-top: 20px; /* Add margin above the button for spacing */
+}
+button:hover {
+    background-color: #f1f1f1;
+}
+.results {
+    margin-top: 20px;
+    width: 80%;
+    text-align: left;
+    margin: 0 auto;
+    display: block;
+}
+.results h3 {
+    color: white;
+    display: block;
+}
+.results pre {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    display: block;
+}
+
+footer {
+    text-align: center;
+    padding: 5px;
+    background-color: #0c33cc;
+    color: white;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+    </style>
+    <script>
+        // Prevent the form from being submitted automatically
+        window.onload = function() {
+            document.getElementById("inputForm").onsubmit = function(e) {
+                // Prevent default form submission
+                e.preventDefault();
+                
+                var inputText = document.getElementById("input_text").value;
+                
+                // Show loader and hide the submit button when clicked
+                prettify();
+                
+                // Only submit if there is input (add your own validation here)
+                if (inputText.trim() !== "") {
+                    // Simulate delay for loader, then submit (or use AJAX to submit the form)
+                    setTimeout(() => {
+                        this.submit(); // Actually submit the form after showing loader
+                    }, 500); // You can adjust the delay if needed
+                }
+            }
+        }
+
+        function prettify() {
+            var image = document.getElementById("load");
+            image.style.display = "block"; 
+            document.getElementById("btn").style.display = "none"; 
+        }
+
+        function show_result() {
+            if ("{{ show_result }}" == "False"){
+                var resultsSection = document.querySelector('.results');
+                resultsSection.style.display = 'none';
+            } else {
+                var resultsSection = document.querySelector('.results');
+                resultsSection.style.display = 'block'; // Show results section when available
+            }
+        }
+    </script>
+</head>
+<body onload="show_result()">
+    <header>
+        <div class="navbar">
+            <span class="brand">CODECURE</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>CODECURE</h1>
+        <p>Turning vulnerabilities into victories.</p>
+
+        <form method="POST" id="inputForm">
+            <textarea id="input_text" name="input_text" placeholder="Paste your code here..." rows="10"></textarea>
+            <button id="btn" type="submit">Fix Code</button>
+        </form>
+
+        <!-- Loader Gif (Initially Hidden) -->
+        <img id="load" style="display:none;" src="https://i.sstatic.net/kOnzy.gif" width="60" height="60" alt="Loading...">
+       
+        <div class="results" id="resultsSection" style="display:none;">
+            <h3 id="h1">Detected Vulnerabilities:</h3>
+            <pre id="vulnerabilitiesOutput">{{ output_1 }}</pre>
+            <h3 id="h2">Corrected Code:</h3>
+            <pre id="correctedCodeOutput">{{ output_2 }}</pre>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made by the CODER BOYZ</p>
+    </footer>
+
+</body>
+</html>
